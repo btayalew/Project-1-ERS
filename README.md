@@ -1,2 +1,1 @@
-# Project-1-ERS
-Employee reimbursement system
+# Employee reimbursement system
