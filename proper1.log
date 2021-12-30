@@ -1,0 +1,14 @@
+2021-12-18 14:23:35.043 [main] TRACE  - This is a trace!
+2021-12-18 14:23:35.044 [main] DEBUG  - This is a debug!
+2021-12-18 14:23:35.044 [main] INFO   - This is an info!
+2021-12-18 14:23:35.044 [main] WARN   - This is a warning!
+2021-12-18 14:23:35.044 [main] ERROR  - This is an error!
+2021-12-18 14:23:35.044 [main] FATAL  - This is fatal!
+2021-12-18 14:23:35.044 [main] ERROR  - Exception was thrown and handled: My Exception is being thrown here
+2021-12-18 14:25:01.826 [main] TRACE  - This is a trace!
+2021-12-18 14:25:01.827 [main] DEBUG  - This is a debug!
+2021-12-18 14:25:01.827 [main] INFO   - This is an info!
+2021-12-18 14:25:01.827 [main] WARN   - This is a warning!
+2021-12-18 14:25:01.827 [main] ERROR  - This is an error!
+2021-12-18 14:25:01.827 [main] FATAL  - This is fatal!
+2021-12-18 14:25:01.828 [main] ERROR  - Exception was thrown and handled: My Exception is being thrown here

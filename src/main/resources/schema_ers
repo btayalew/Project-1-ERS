@@ -1,0 +1,55 @@
+CREATE SCHEMA ERS;
+DROP TABLE IF EXISTS ERS.USERS;
+
+CREATE TABLE ERS.ERS_USERS_ROLES
+(
+    ERS_USER_ROLE_ID SERIAL PRIMARY KEY,
+    USER_ROLE VARCHAR (50)
+);
+
+CREATE TABLE ERS.ERS_USERS
+(
+    ERS_USERS_ID SERIAL PRIMARY KEY,
+    ERS_USERNAME VARCHAR (50),
+    ERS_PASSWORD VARCHAR (50),
+    USER_FIRST_NAME VARCHAR (100),
+    USER_LAST_NAME VARCHAR (100),
+    USER_EMAIL VARCHAR (150),
+    USER_ROLE_ID INTEGER REFERENCES ERS.ERS_USERS_ROLES (ERS_USER_ROLE_ID),
+    UNIQUE (ERS_USERNAME, USER_EMAIL)
+);
+
+CREATE TABLE ERS.ERS_REIMBURSEMENT_STATUS(
+  REIMB_STATUS_ID INTEGER  PRIMARY KEY,
+  REIMB_STATUS VARCHAR (50)  NOT NULL
+);
+
+CREATE TABLE ERS.ERS_REIMBURSEMENT_TYPE(
+  REIMB_TYPE_ID SERIAL PRIMARY KEY,
+  REIMB_TYPE VARCHAR (50) NOT NULL
+);
+
+CREATE TABLE ERS.ERS_REIMBURSEMENT(
+    REIMB_ID SERIAL NOT NULL,
+    REIMB_AMOUNT INTEGER NOT NULL,
+    REIMB_SUBMITTED TIMESTAMP NOT NULL,
+    REIMB_RESOLVED TIMESTAMP,
+    REIMB_DESCRIPTION VARCHAR (500) NOT NULL,
+    REIMB_RECEIPT BOOLEAN NOT NULL,
+    REIMB_AUTHOR INTEGER NOT NULL REFERENCES ERS.ERS_USERS (ERS_USERS_ID),
+    REIMB_RESOLVER INTEGER NOT NULL REFERENCES ERS.ERS_USERS (ERS_USERS_ID),
+    REIMB_STATUS_ID INTEGER NOT NULL REFERENCES ERS.ERS_REIMBURSEMENT_STATUS (REIMB_STATUS_ID),
+    REIMB_TYPE_ID INTEGER NOT NULL REFERENCES ERS.ERS_REIMBURSEMENT_TYPE (REIMB_TYPE_ID)
+);
+
+insert into ers.ers_reimbursement_type (reimb_type) values('lodging');
+insert into ers.ers_reimbursement_type (reimb_type) values('travel');
+insert into ers.ers_reimbursement_type (reimb_type) values('food');
+insert into ers.ers_reimbursement_type (reimb_type) values('other');
+
+insert into ers.ers_users_roles (user_role) values('Basic Employee');
+insert into ers.ers_users_roles (user_role) values('Financial Manager');
+
+insert into ers.ers_users (ers_username, ers_password, user_first_name, user_last_name, user_email, user_role_id) values('uname','pword','fname','lname','usr@tmail.com',1);
+alter  table ers.ers_reimbursement alter column reimb_receipt set data type varchar(200);
+
